@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Basic Input Type</title>
+    <link rel = "stylesheet" href="../css/sampleForm.css">
+</head>
+<body>
+    <form>
+        <header class="headerContainer">
+            <h1>HTML form 5 input form</h1>
+        </header>
+        <div>
+            <label for="text">Text input type for Name: </label>
+            <input type="text" id="text" name="text" required>
+            <error-output class="text-error" for="text"></error-output>
+        </div>
+        <div>
+            <label for="pwd">password input type: </label>
+            <input type="password" id="pwd" name="pwd" required>
+        </div>
+        <div>
+            <label for="email">email input type: </label>
+            <input type="email" id="email" name="email">
+            <error-output class="email-error" for="text"></error-output>
+        </div>
+        <div>
+            <label for="url">url input type: </label>
+            <input type="url" id="url" name="url">
+        </div>
+        <div>
+            <label for="number">number input type: </label>
+            <input type="number" id="number" name="number">
+        </div>
+        <div>
+            <label for="tel">tel input type: </label>
+            <input type="number" id="tel" name="tel">
+        </div>
+        <div>
+            <label for="search">search input type: </label>
+            <input type="search" id="search" name="search">
+        </div>
+        <div class="nativeDateTimePicker">
+            <label for="party">Choose a date and time: </label>
+            <input type="datetime-local" id="party" name="bday">
+            <span class="validity"></span>
+        </div>
+        <div>
+            <label for="salary">Choose your salary: </label>
+            <input type="range" name="salary" id="salary" min="300000" 
+                    max="500000" step="100" value="400000">
+            <output class="salary-output" for="salary">400000</output>
+        </div>
+        <div>
+            <button>Submit</button>
+        </div>
+    </form>
+    <script>
+        const text = document.querySelector('#text');
+        const textError = document.querySelector('.text-error');
+        text.addEventListener('input', function() {
+            let firstNameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
+            if(firstNameRegex.test(text.value)) 
+                textError.textContent = "";
+            else        
+                textError.textContent = "Name is incorrect";
+        });
+
+        const email = document.querySelector('#email');
+        const emailError = document.querySelector('.email-error');
+        email.addEventListener('input', function() {
+            let emailRegex = RegExp("^[a-z0-9]+(([\\.+-][a-z0-9]{1,})?)+@[a-z0-9]+\\.([a-z]{2,4})+((\\.[a-z]{2,4})?)$");
+            if(emailRegex.test(email.value  ))
+                emailError.textContent = "";
+            else
+                emailError.textContent = "Email is incorrect";
+        })
+
+        const salary = document.querySelector('#salary');
+        const output = document.querySelector('.salary-output');
+        output.textContent = salary.value;
+        salary.addEventListener('input', function() {
+            output.textContent = salary.value;
+        });
+    </script>
+</body>
+</html>
